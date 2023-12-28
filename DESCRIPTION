@@ -18,7 +18,6 @@ Imports:
     magrittr,
     fs,
     readxl,
-    CProg,
     gplyr,
     janitor
 Suggests: 

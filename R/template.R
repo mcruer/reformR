@@ -37,14 +37,14 @@
 #'
 template <- function (df) {
   df %>%
-    CProg::rename_x() %>%
-    CProg::add_index(col_name = "row") %>%
+    gplyr::rename_x() %>%
+    gplyr::add_index(col_name = "row") %>%
     tidyr::pivot_longer(cols = -row) %>%
     dplyr::rename(col = name) %>%
-    CProg::quickm(col, str_remove, "x") %>%
-    CProg::reclass_n(col) %>%
+    gplyr::quickm(col, str_remove, "x") %>%
+    gplyr::to_number(col) %>%
     dplyr::rename (name = value) %>%
-    CProg::filter_in(name, tag, na.rm = TRUE)
+    gplyr::filter_in(name, tag, na.rm = TRUE)
 }
 
 

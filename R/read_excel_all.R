@@ -45,27 +45,9 @@ read_excel_all <- function(path, sheets = NULL, sheets_regex = ".", range = NULL
     )) %>%
     tidyr::unnest(raw_df) %>%
     dplyr::group_by(sheet_name) %>%
-    CProg::add_index() %>%
+    gplyr::add_index() %>%
     dplyr::ungroup() %>%
     janitor::clean_names()
 
 }
-# read_excel_all <- function(path, range=NULL) {
-#   sheets <- readxl::excel_sheets(path)
-#   purrr::map(
-#     sheets,
-#     ~ readxl::read_excel(
-#       path,
-#       sheet = .x,
-#       col_names = FALSE,
-#       col_types = "text",
-#       trim_ws = no,
-#       range = range
-#     ) %>%
-#       CProg::rename_x() %>%
-#       CProg::add_index() %>%
-#       dplyr::mutate(sheet_name = .x, .before = 1)
-#   ) %>%
-#     dplyr::bind_rows()
-# }
 

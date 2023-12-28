@@ -11,7 +11,6 @@ tables_and_columns <- function (raw_template) {
 
   table_info <- tags (raw_template) %>%
     dplyr::filter(!is.na(column.name)) %>%
-    #CProg::filter_out_na(column.name) %>%
     dplyr::arrange(row.start, col.start) %>%
     tidyr::fill(table.name, .direction = "down") %>%
     dplyr::select(sheet_name, row.start, col.start, table.name, column.name) %>%
@@ -28,12 +27,10 @@ tables_and_columns <- function (raw_template) {
 
   column_info <- tags(raw_template) %>%
     dplyr::filter(!is.na(column.name)) %>%
-    #CProg::filter_out_na(column.name) %>%
     dplyr::arrange(row.start, col.start) %>%
     tidyr::fill(table.name, .direction = "down") %>%
     dplyr::group_by(table.name) %>%
     dplyr::mutate(col.start = col.start %>% magrittr::subtract(min(col.start) - 1)) %>%
-    #CProg::quickm(col.start, ~ .x %>% magrittr::subtract(min(.x) - 1)) %>%
     dplyr::select(col.start, table.name, column.name) %>%
     dplyr::ungroup()
 
