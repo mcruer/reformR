@@ -4,7 +4,7 @@
 \alias{read_excel_all}
 \title{Read All Sheets from an Excel File}
 \usage{
-read_excel_all(path, sheets = NULL, sheets_regex = ".", range = NULL)
+read_excel_all(path, sheets = NULL, sheets_regex = ".")
 }
 \arguments{
 \item{path}{A character string specifying the path to the Excel file.}
@@ -12,8 +12,6 @@ read_excel_all(path, sheets = NULL, sheets_regex = ".", range = NULL)
 \item{sheets}{A vector with sheet names or positions (numeric). If NULL (the default), the entire workbook is read.}
 
 \item{sheets_regex}{A regex string used to select the sheets desired.}
-
-\item{range}{A cell range to read from the sheets. If NULL (the default), the entire sheet is read.}
 }
 \value{
 A named list of data frames. Each data frame corresponds to a sheet in the Excel file.
