@@ -11,12 +11,11 @@ tables_and_columns <- function (raw_template) {
 
   table_info <- tags (raw_template) %>%
     dplyr::filter(!is.na(column.name)) %>%
-    dplyr::arrange(row.start, col.start) %>%
+    dplyr::arrange(sheet_name, row.start, col.start) %>%
     tidyr::fill(table.name, .direction = "down") %>%
     dplyr::select(sheet_name, row.start, col.start, table.name, column.name) %>%
     dplyr::left_join(table.lengths) %>%
     dplyr::group_by(sheet_name, table.name) %>%
-    #mutate(col.max = max(col.start)) %>% peek
     dplyr::summarise(
       row.start = mean(row.start),
       col.end = max(col.start),
