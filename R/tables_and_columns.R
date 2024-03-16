@@ -26,7 +26,7 @@ tables_and_columns <- function (raw_template) {
 
   column_info <- tags(raw_template) %>%
     dplyr::filter(!is.na(column.name)) %>%
-    dplyr::arrange(row.start, col.start) %>%
+    dplyr::arrange(sheet_name, row.start, col.start) %>%
     tidyr::fill(table.name, .direction = "down") %>%
     dplyr::group_by(table.name) %>%
     dplyr::mutate(col.start = col.start %>% magrittr::subtract(min(col.start) - 1)) %>%
