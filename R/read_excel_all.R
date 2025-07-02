@@ -77,7 +77,7 @@ read_excel_all <- function(path, sheets = NULL, sheets_regex = ".") {
         na.strings = "",
         fillMergedCells = FALSE
       ) %>%
-        as_tibble() %>%
+        tibble::as_tibble() %>%
         gplyr::to_character()
     )) %>%
     tidyr::unnest(raw_df) %>%
